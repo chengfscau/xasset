@@ -1,21 +1,17 @@
 # xasset
-xasset 致力于为 Unity 项目提供了一套 精简稳健 的资源管理环境
 
-**主要特点**
+xasset 提供了一种使用资源路径的简单的方式来加载资源，简化了Unity项目资源打包，更新，加载，和回收的作业流程
+- 主页：https://github.com/xasset/xasset
+- 支持：[693203087](https://jq.qq.com/?_wv=1027&k=5DyV09a) （QQ群，可点击加入）
 
-- 自动管理依赖的加载和卸载，循环依赖下可以正常运行
-- 接管了场景以及常规资源的加载（同步/异步）和卸载，逻辑开发无需关注 AssetBundle
+## 主要特点
+- 集成了官方的 [AssetBundleBrowser](https://docs.unity3d.com/Manual/AssetBundles-Browser.html)，支持可视化的资源冗余预警，以及拖拽式的批量打包粒度调整
+- 提供了场景以及常规资源的加载（同步/异步）和卸载的统一接口，并自动处理相关依赖的操作
 - 基于引用计数管理资源对象生命周期，避免重复加载和轻易卸载
-- 支持编辑器模式，不构建 AssetBundle 也可正常使用，开发效率高
-- 集成了官方的 [AssetBundleBrowser](https://docs.unity3d.com/Manual/AssetBundles-Browser.html)，支持可视化的资源冗余预警，以及打包粒度调整
-- 提供了支持断点续传的资源版本更新Demo
-- 异步加载模式底层最大并发请求数量可配置
+- 提供了带断点续传的资源版本更新demo
+- 支持编辑器模式，开发效率高 
 
-**未来计划**
-
-计划提供资源性能预警工具，对单个资源的 内存/加载/渲染 开销进行真机采样，然后收集 prefab 的依赖并根据真机采样的数据，进行 Runtime 时的性能预警，把资源的性能问题在制作时提前发现提前处理，感兴趣的朋友可以加入技术支持群，一起交流探讨
-
-**使用范例**
+## 使用范例
 
 1. 资源初始化
 
@@ -93,28 +89,23 @@ xasset 致力于为 Unity 项目提供了一套 精简稳健 的资源管理环�
 
    最后，以上就是基于 Demo 场景进行资源版本更新的主要流程，更多演示请参考: [xasset 框架入门指南](https://zhuanlan.zhihu.com/p/69410498)
 
-**测试环境**
+## 特别说明
+1. 对于引用计数：Asset对象的每次Load需要配对的Unload/Release来回收资源，Asset在Requrire之后，不需要主动调用Unload/Release，在Require的对象被销毁时，会自动回收
 
-引擎版本：Unity 5.6.7 / Unity2017.4 / Unity 2018.4
+## 测试环境
+- 引擎版本：Unity 5.6.7 / Unity2017.4 / Unity 2018.4
+- 语言环境：.net 3.5/.net 4.0 (4.0版本有路径问题，如果发现有报错可以先切回 3.5 环境)
+- 操作系统：macOS 10.14.5 
 
-语言环境：.net 3.5/.net 4.0 (4.0版本有路径问题，如果发现有报错可以先切回 3.5 环境)
+## 贡献成员
+- [yusjoel](https://github.com/yusjoel)
+- [hemingfei](https://github.com/hemingfei)
+- [veboys](https://github.com/veboys)
+- [woshihuo12](https://github.com/woshihuo12)
+- [CatImmortal](https://github.com/CatImmortal) 
+- [ZhangDi](https://github.com/ZhangDi2018)
+- [QuinShuai](https://github.com/QuinShuai)
 
-操作系统：macOS 10.14.5 
-
-**技术支持**
-
-QQ群: [693203087](https://jq.qq.com/?_wv=1027&k=5DyV09a) （可点击加入）
-
-**贡献成员**
-
-- [hemingfei](https://github.com/hemingfei): v2 解决下载有新增资源包文件报空指针的问题，AssetsUpdate.cs 中 更新完成后 completed 两次的问题
-- [yusjoel](https://github.com/yusjoel): v2 处理Path.GetDirectoryName()获取的路径在.Net 3.5和.Net 4.0下斜杠不一致的问题
-- [veboys](https://github.com/veboys): v1 WEBGL兼容性支持 
-- [woshihuo12](https://github.com/woshihuo12): v1 修正编辑器下assetbundle模式报错的问题
-- [CatImmortal](https://github.com/CatImmortal): v2 WebAsset底层支持UnityWebRequest 
-- [ZhangDi](https://github.com/ZhangDi2018): v1 Tiny improve
-
-**友情链接**
-
+## 推荐链接
  - [ET](https://github.com/egametang/ET) Unity3D Client And C# Server Framework
  - [QFramework](https://github.com/liangxiegame/QFramework) Your first K.I.S.S Unity 3D Framework
